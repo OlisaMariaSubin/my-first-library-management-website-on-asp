@@ -1,0 +1,283 @@
+﻿
+@{
+    ViewData["Title"] = "BookInventory";
+}
+@model librarysite.Models.BookIssueViewModel
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h4>Book Details</h4>
+                            <img src="~/imgs/cartoon-style-book-logo-illustration-no-background-perfect-for-print-on-demand-free-png.webp" width="150px" />
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col text-center">
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" id="inputGroupFile02">
+                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form asp-action="SearchAuthor" method="get">
+                        <div class="row mb-3">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="BookID" class="form-label">Book Id</label>
+
+                                    <div class="input-group">
+                                        <input type="text" name="MemberId" class="form-control" placeholder="enter id">
+                                        <button type="submit" class="btn btn-primary">Go</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-9">
+                                <div class="form-group">
+
+                                    <div class="form-group">
+                                        <label asp-for="Bookname">Book Name</label>
+                                        <input asp-for="Bookname" class=" form-control"/><br>
+                                        <span asp-validation-for="Bookname" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            
+
+                        </div>
+
+                        <div class="row mb-3">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                   
+                                    <label for="Language" class="form-label">Languauge</label>
+                                    <select class="form-select">
+                                        <option selected disabled>Select Language</option>
+                                        <option>English</option>
+                                        <option>Hindi</option>
+                                        <option>Arabic</option>
+                                    </select>
+
+                                    <label for="Publisher" class="form-label">Publisher Name</label>
+                                    <select class="form-select">
+                                        <option selected disabled>Select Publisher</option>
+                                        <option>Publisher1</option>
+                                        <option>Publisher2</option>
+                                        <option>Publisher3</option>
+                                    </select>
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label for="Author" class="form-label">Author</label>
+                                    <select class="form-select">
+                                        <option selected disabled>Author</option>
+                                        <option>English</option>
+                                        <option>Hindi</option>
+                                        <option>Arabic</option>
+                                    </select>
+
+                                    <div class="form-group">
+                                        <label for="StartDate" class="form-label">Startdate</label>
+
+                                        <div class="input-group">
+                                            <input asp-for="StartDate" class="form-control">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Genre" class="form-label">Genre</label>
+
+                                    <select class="form-select" multiple aria-label="Listbox example">
+                                        <option selected disabled>select</option>
+                                        <option value="2">Thriller</option>
+                                        <option value="3">Motivational</option>
+                                        <option value="4">Horror</option>
+                                    </select>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        
+                        <div class="row mb-3">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Edition" class="form-label">Edition</label>
+
+                                    <div class="input-group">
+                                        <input asp-for="Edition" class="form-control" placeholder="Edition" >
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="BookCost" class="form-label">Book Cost</label>
+
+                                    <div class="input-group">
+                                        <input asp-for="BookCost" class="form-control" placeholder="BookCost">
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Pages" class="form-label">Pages</label>
+
+                                    <div class="input-group">
+                                        <input asp-for="Pages" class="form-control" placeholder="Pages">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-6">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ActualStock" class="form-label">Actual Stock</label>
+
+                                    <div class="input-group">
+                                        <input asp-for="ActualStock" class="form-control" placeholder="ActualStock" ><br>
+                                    </div><br>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CurrentStock" class="form-label">Current Stock</label>
+
+                                    <div class="input-group">
+                                        <input asp-for="CurrentStock" class="form-control" placeholder="CurrentStock"readonly><br>
+                                    </div><br>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="IssuedBooks" class="form-label">Issued Books</label>
+
+                                    <div class="input-group">
+                                        <input asp-for="IssuedBooks" class="form-control" placeholder="IssuedBooks"readonly>
+                                    </div><br>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-6">
+                            <div class="col-mb-12">
+
+                                <div class="form-group">
+                                    <label for="Description" class="form-label">Description</label>
+
+                                    <div class="input-group">
+                                        <input asp-for="Description" class="form-control" placeholder="Description"><br>
+                                    </div><br>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-success w-100 btn-lg">Add</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-warning w-100 btn-lg">Update</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-danger w-100 btn-lg">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">>>Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h4>Book Inventory List</h4>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+
+                            <table class="table table-striped table-hover text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Book ID</th>
+                                        <th>Book</th>
+                                        <th>Author Name</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

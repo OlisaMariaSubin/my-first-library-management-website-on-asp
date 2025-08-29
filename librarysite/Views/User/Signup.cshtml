@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewData["Title"] = "Signup";
+}
+
+@model librarysite.Models.SignupViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div>
+                <center>
+                    <h4>@ViewBag.Greeting</h4>
+                </center>
+            </div>
+            
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <img src="~/imgs/memlogin.jpg" width="150px" />
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h4>User Registeration</h4>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+
+                    <form asp-action="Signup" method="post">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Name">Name</label>
+                                    <input asp-for="Name" class=" form-control" placeholder="Enter your fullname" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="DOB">Date of Birth</label>
+                                    <input asp-for="DOB" class="form-control" placeholder="dd-mm-yy" />
+                                    <span asp-validation-for="DOB" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Contact">Contact No</label>
+                                    <input asp-for="Contact" class=" form-control" placeholder="Enter your No" />
+                                    <span asp-validation-for="Contact" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email">Email ID</label>
+                                    <input asp-for="Email" class="form-control" placeholder="Enter your Email id" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="State">State</label>
+                                    @Html.DropDownListFor(m => m.State,
+                                    new SelectList(new List<string> {
+                                                                        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chattisgarh",
+                                                                        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkand",
+                                                                        "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur"
+                                                                        }),
+                                                                        "-- Select State --",
+                                                                        new { @class = "form-select" })
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="City">City</label>
+                                    <input asp-for="City" class="form-control" placeholder="City" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Pincode">Pincode</label>
+                                    <input asp-for="Pincode" class=" form-control" placeholder="Pincode" />
+                                    <span asp-validation-for="Pincode" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Address">Address</label>
+                            <input asp-for="Address" class="form-control" placeholder="Full Address" />
+                            <span asp-validation-for="Address" class="text-danger"></span><br>
+                        </div>
+
+                        <div>
+                            <center>
+                                <span class="badge bg-primary">Login Credentials</span>
+                            </center>
+                        </div>
+                       
+
+                        <div class="form-group">
+                            <label asp-for="MemberId">User ID</label>
+                            <input asp-for="MemberId" class=" form-control" placeholder="Enter your ID" />
+                            <span asp-validation-for="MemberId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Password">Password</label>
+                            <input asp-for="Password" class="form-control" placeholder="Enter your Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <div class="mb-2">
+                                <button type="submit" class="btn btn-info w-100 btn-lg">Sign Up</button>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div>
+                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">>>Back to Home</a><br>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@using System.Text.Json
+
+@if (TempData["Popup"] != null)
+{
+    <script>
+        alert(@Html.Raw(JsonSerializer.Serialize(TempData["Popup"].ToString())));
+    </script>
+}
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

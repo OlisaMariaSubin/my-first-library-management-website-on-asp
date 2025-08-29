@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+@model librarysite.Models.LoginViewModel
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <img src="~/imgs/admin.webp" width="150px" />
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h3>Admin Login</h3>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+
+                    <form asp-action="Login" method="post">
+                        <div class="form-group">
+                            <label asp-for="MemberId">Admin ID</label>
+                            <input asp-for="MemberId" class=" form-control" placeholder="Enter your ID" /><br>
+                            <span asp-validation-for="MemberId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Password">Password</label>
+                            <input asp-for="Password" class="form-control" placeholder="Enter your Password" /><br>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <div class="mb-2">
+                                <button type="submit" class="btn btn-success w-100 btn-lg">Login</button>
+                            </div>
+
+                            <div class="mb-2">
+                                <button type="reset" class="btn btn-secondary w-100 btn-lg">Clear</button>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div>
+                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">>>Back to Home</a><br>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
