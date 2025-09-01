@@ -10,7 +10,8 @@ namespace librarysite.Models
         [Required(ErrorMessage = "password is required.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
+        [Required(ErrorMessage = "username is required.")]
+        public string username { get; set; }
         public bool RememberMe { get; set; }
     }
 }

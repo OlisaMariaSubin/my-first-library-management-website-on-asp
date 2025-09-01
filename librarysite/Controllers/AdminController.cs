@@ -1,15 +1,65 @@
-﻿using librarysite.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using librarysite.Models;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using Microsoft.Data.SqlClient;
+
 
 namespace librarysite.Controllers
 {
     public class AdminController : Controller
     {
-        public IActionResult Login()
+        private readonly IConfiguration _configuration;
+        public AdminController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+       public IActionResult Login()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
 
+            string strcon = _configuration.GetConnectionString("con");
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(strcon))
+                {
+                    if (con.State == ConnectionState.Closed) con.Open();
+
+                    string query = "SELECT * FROM admin_login_tbl WHERE username=@username AND password=@password";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@username", model.username);
+                        cmd.Parameters.AddWithValue("@password", model.Password);
+
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                TempData["LoginMessage"] = "success";
+                                return RedirectToAction("MemberManagement", "Admin");
+                            }
+                            else
+                            {
+                                TempData["LoginMessage"] = "invalid";
+                                return View(model);
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                TempData["LoginMessage"] = "error";
+                return View(model);
+            }
+        }
         public IActionResult AuthorManagement()
         {
             return View(new AuthorViewModel());

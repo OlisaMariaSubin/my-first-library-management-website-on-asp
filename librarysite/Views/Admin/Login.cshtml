@@ -12,6 +12,19 @@
 
             <div class="card">
                 <div class="card-body">
+                    <script>
+                        window.onload = function () {
+                            var message = '@TempData["LoginMessage"]';
+                            if (message === "success") {
+                                alert("✅ Successfully Logged In!");
+                                window.location.href = '@Url.Action("MemberManagement", "Admin")'; // redirect after alert
+                            } else if (message === "invalid") {
+                                alert("❌ Invalid Admin ID or Password");
+                            } else if (message === "error") {
+                                alert("⚠️ Something went wrong. Please try again.");
+                            }
+                        };
+                    </script>
 
                     <div class="row">
                         <div class="col">
@@ -37,9 +50,9 @@
 
                     <form asp-action="Login" method="post">
                         <div class="form-group">
-                            <label asp-for="MemberId">Admin ID</label>
-                            <input asp-for="MemberId" class=" form-control" placeholder="Enter your ID" /><br>
-                            <span asp-validation-for="MemberId" class="text-danger"></span>
+                            <label asp-for="username">Admin ID</label>
+                            <input asp-for="username" class=" form-control" placeholder="Enter your ID" /><br>
+                            <span asp-validation-for="username" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">

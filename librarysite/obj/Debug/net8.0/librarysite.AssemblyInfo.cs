@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("librarysite")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+622a42e13c74f39c0ac10f0998d73f836789026f")]
 [assembly: System.Reflection.AssemblyProductAttribute("librarysite")]
 [assembly: System.Reflection.AssemblyTitleAttribute("librarysite")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
